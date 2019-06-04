@@ -29,7 +29,6 @@ public class Pair<T, V> {
 
   @Override
   public int hashCode() {
-
     Integer firstObjectToInteger;
     int result;
     if (this.firstObject != null & this.secondObject != null) {
