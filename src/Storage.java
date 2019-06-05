@@ -5,7 +5,7 @@ public class Storage<T, V> {
   private int arraySize = 2;
   private int arrayIndexCounter;
 
-  private Storage() {
+  public Storage() {
     key = (T[]) new Object[arraySize];
     value = (V[]) new Object[arraySize];
   }
