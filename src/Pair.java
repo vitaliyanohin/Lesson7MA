@@ -22,9 +22,12 @@ public class Pair<T, V> {
 
   @Override
   public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null) return false;
     Pair<?, ?> pair = (Pair<?, ?>) o;
-    if (firstObject != null ? !firstObject.equals(pair.firstObject) : pair.firstObject != null) return false;
-    return secondObject != null ? secondObject.equals(pair.secondObject) : pair.secondObject == null;
+    if (this.firstObject == null || pair.firstObject == null || this.secondObject == null || pair.secondObject == null)
+      return false;
+    return this.firstObject == pair.firstObject & this.secondObject == pair.secondObject;
   }
 
   @Override

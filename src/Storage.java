@@ -1,34 +1,40 @@
 public class Storage<T, V> {
 
-  private T key;
-  private V value;
+  private T[] key;
+  private V[] value;
+  private int arraySize = 2;
+  private int arrayIndexCounter;
+
+  private Storage() {
+    key = (T[]) new Object[arraySize];
+    value = (V[]) new Object[arraySize];
+  }
 
   public void put(T key, V value) {
-    this.setKey(key);
-    this.setValue(value);
+    if (this.key.length == arrayIndexCounter) {
+      arrayCopy();
+    }
+    this.key[arrayIndexCounter] = key;
+    this.value[arrayIndexCounter] = value;
+    arrayIndexCounter++;
   }
 
   public V get(T key) throws KeyException {
-    if (getKey() == key) {
-      return getValue();
-    } else {
-      throw new KeyException("Такого ключа нет!");
+    for (int i = 0; i < this.key.length; i++) {
+      if (this.key[i] == key) {
+        return value[i];
+      }
     }
+    throw new KeyException("Key not found!");
   }
 
-  private T getKey() {
-    return key;
-  }
-
-  private void setKey(T key) {
-    this.key = key;
-  }
-
-  private V getValue() {
-    return value;
-  }
-
-  private void setValue(V value) {
-    this.value = value;
+  private void arrayCopy() {
+    arraySize = arraySize * 2;
+    T[] key2 = (T[]) new Object[arraySize];
+    V[] value2 = (V[]) new Object[arraySize];
+    System.arraycopy(this.key, 0, key2, 0, this.key.length);
+    System.arraycopy(this.value, 0, value2, 0, this.value.length);
+    this.key = key2;
+    this.value = value2;
   }
 }
