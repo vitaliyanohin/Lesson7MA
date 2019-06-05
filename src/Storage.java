@@ -12,7 +12,7 @@ public class Storage<T, V> {
 
   public void put(T key, V value) {
     if (this.key.length == arrayIndexCounter) {
-      arrayCopy();
+      arrayExpansion();
     }
     this.key[arrayIndexCounter] = key;
     this.value[arrayIndexCounter] = value;
@@ -28,7 +28,7 @@ public class Storage<T, V> {
     throw new KeyException("Key not found!");
   }
 
-  private void arrayCopy() {
+  private void arrayExpansion() {
     arraySize = arraySize * 2;
     T[] key2 = (T[]) new Object[arraySize];
     V[] value2 = (V[]) new Object[arraySize];
