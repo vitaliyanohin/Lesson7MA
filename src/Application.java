@@ -1,6 +1,6 @@
 public class Application {
 
-  public static void main(String[] args) throws Exception {
+  public static void main(String[] args) {
     Pair<Integer, String> pair = Pair.of(1, "hello");
     Integer i = pair.getFirst(); // 1
     String s = pair.getSecond(); // "hello"

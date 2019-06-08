@@ -19,22 +19,22 @@ public class Storage<T, V> {
     arrayIndexCounter++;
   }
 
-  public V get(T key) throws KeyException {
+  public V get(T key) {
     for (int i = 0; i < this.key.length; i++) {
       if (this.key[i] == key) {
         return value[i];
       }
     }
-    throw new KeyException("Key not found!");
+    return null;
   }
 
   private void arrayExpansion() {
     arraySize = arraySize * 2;
-    T[] key2 = (T[]) new Object[arraySize];
-    V[] value2 = (V[]) new Object[arraySize];
-    System.arraycopy(this.key, 0, key2, 0, this.key.length);
-    System.arraycopy(this.value, 0, value2, 0, this.value.length);
-    this.key = key2;
-    this.value = value2;
+    T[] tempKey = (T[]) new Object[arraySize];
+    V[] tempValue = (V[]) new Object[arraySize];
+    System.arraycopy(this.key, 0, tempKey, 0, this.key.length);
+    System.arraycopy(this.value, 0, tempValue, 0, this.value.length);
+    this.key = tempKey;
+    this.value = tempValue;
   }
 }
