@@ -2,12 +2,12 @@ public class Storage<T, V> {
 
   private T[] key;
   private V[] value;
-  private int arraySize = 2;
   private int arrayIndexCounter;
+  private static final int SIZE = 2;
 
   public Storage() {
-    key = (T[]) new Object[arraySize];
-    value = (V[]) new Object[arraySize];
+    key = (T[]) new Object[SIZE];
+    value = (V[]) new Object[SIZE];
   }
 
   public void put(T key, V value) {
@@ -29,9 +29,9 @@ public class Storage<T, V> {
   }
 
   private void arrayExpansion() {
-    arraySize = arraySize * 2;
-    T[] tempKey = (T[]) new Object[arraySize];
-    V[] tempValue = (V[]) new Object[arraySize];
+     int newSize = SIZE * 2;
+    T[] tempKey = (T[]) new Object[newSize];
+    V[] tempValue = (V[]) new Object[newSize];
     System.arraycopy(this.key, 0, tempKey, 0, this.key.length);
     System.arraycopy(this.value, 0, tempValue, 0, this.value.length);
     this.key = tempKey;
